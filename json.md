@@ -8,7 +8,11 @@
 - [diferencia entre objeto y json](#diferencia-entre-objeto-y-json)
 - [objetos anidados](#objetos-anidados)
 - [las propiedades mantienen sus metodos](#)
-- [](#)
+- [arrays dentro de los objetos y array de objetos](#arrays-dentro-de-los-objetos-y-array-de-objetos)
+- [visualizacion de json comoda](#visualizacion-de-json-comoda)
+- [Metodos de JSON](#metodos-de-json)
+- [objetos pasados como parámetros y retornados](#objetos-pasados-como-parámetros-y-retornados)
+- [Clonacion de objetos y destructuring](#clonacion-de-objetos-y-destructuring)
 - [](#)
 
 ## que es json y que son objetos
@@ -251,12 +255,11 @@ persona.veiculo.tecnomecanica.expedicion = "01/01/2024"
 
 ```
 
-
 # las propiedades mantienen sus metodos
+
 las propiedades de un json tienen sus metodos normales de JS y esto que quiere decir. que si una propuedad es de tipo string puede tener todos los metodos de in string asi mismo si es tipo Date o array. por ejemplo
 
 ```javascript
-/// objeto
 const persona = {
   nombre: "Edwar Diaz",
   edad: 27,
@@ -275,26 +278,289 @@ const persona = {
   },
 };
 
-console.log(persona.nombre,split(" ")) // ["Edwar", "Diaz"] ... esto no afecta a la propiedad
-console.log(persona.idiomas) // 
+console.log(persona.nombre, split(" ")); // ["Edwar", "Diaz"] ... esto no afecta a la propiedad
+console.log(persona.idiomas.find((item) => item === "ingles")); // ingles
 ```
 
-fechas en los objetos (en json seria en string)
+# arrays dentro de los objetos y array de objetos
 
-arrays dentro de los objetos
+Los objetos en JS pueden tener arrays como ya hemos visto anteriormente y los arrays pueden tener dentro de ellos elementos de cualquier tipo por lo cual es posible que un objeto tenga un array con objetos dentro lo que lo convertiria en una lista de objetos como en el siguiente ejemplo
 
-array de objetos
+```javascript
+const persona = {
+  nombre: "Edwar Diaz",
+  edad: 27,
+  saldo: 1000000,
+  cansado: false,
+  idiomas: [
+    {
+      nombre: "ingles",
+      nivel: "b1",
+    },
+    {
+      nombre: "español",
+      nivel: "nativo",
+    },
+    {
+      nombre: "frances",
+      nivel: "a1",
+    },
+  ],
+  veiculo: {
+    marca: "BMW",
+    color: "plateado",
+    kilometraje: 1567,
+    averiado: false,
+    tecnomecanica: {
+      expedicion: "10/10/2023",
+      expiracion: "10/10/2024",
+    },
+  },
+};
+```
 
-metodos de json
+de esta forma podemos tener un listado de objetos.
 
-visualizacion de json comoda
+tambien podemos tener el siguiente ejemplo donde sea un listado de objetos que tengan sus respectivas propuedades
 
-converitr a string
+```javascript
+const personas = [
+  {
+    nombre: "Edwar Diaz",
+    edad: 27,
+    saldo: 1000000,
+    cansado: false,
+    idiomas: ["ingles", "español", "frances"],
+  },
+  {
+    nombre: "Estefania Salcedo",
+    edad: 24,
+    saldo: 1000000,
+    cansado: false,
+    idiomas: ["ingles", "español", "frances", "portugues", "koreano"],
+  },
+  {
+    nombre: "Tony Stark",
+    edad: 38,
+    saldo: 10000000000,
+    cansado: false,
+    idiomas: ["ingles"],
+  },
+];
+```
 
-objetos padados como referencia
+un listado de objetos es algo muy comun cuando obtenemos respuesta de un backend cuando vamosd a puntar una tabla o algun listado de informacion como por ejemplo para un selector (dropdown) o por ejemplo un listado de blogs o post. esto nos llega en forma de array desde el back y un array de objetos. Con react se facilita el renderizar elementos en html que se repiten y estan basados en una lista de objetos.
 
-clonacion de objetos
+El tener una lista de objetos me permite aplicar los metodos de los array para obtener algun resultado que queramos por ejemplo
 
-objetos pasados como parámetros y retornados
+```javascript
+const personas = [
+  {
+    nombre: "Edwar Diaz",
+    edad: 27,
+    saldo: 1000000,
+    cansado: false,
+    idiomas: ["ingles", "español", "frances"],
+  },
+  {
+    nombre: "Estefania Salcedo",
+    edad: 24,
+    saldo: 1000000,
+    cansado: false,
+    idiomas: ["ingles", "español", "frances", "portugues", "koreano"],
+  },
+  {
+    nombre: "Tony Stark",
+    edad: 38,
+    saldo: 10000000000,
+    cansado: true,
+    idiomas: ["ingles"],
+  },
+];
 
-los objetos con metodos
+// filtrar a las personas menores a 30 años
+
+const menores30 = personas.filter((persona) => oersona.edad <= 30);
+
+// usando un map podemos obtener una lista personalizada basada en la informacion de otra lista
+// como por ejemplo saber en un objeto cuantos idiomas en total sabe una persona.
+
+const personasIdiomas = personas.map((persona) => {
+  return {
+    nombre: persona.nombre,
+    cantidadIdiomas: persona.idiomas.length,
+  };
+});
+```
+
+asi como los ejemplos anteriores podemos usar metodos de los array para manupular nuestra lista de objetos a conveniencia. **Recomendacion es siempre mirar si se puede utilizar un metodo de los array antes de usar algo como un `for`**
+
+# visualizacion de json comoda
+
+en ocasiones un JSON puede ser muy largo y tener muchos niveles de anidamiento, en esos casos tener algo visial ayuda muchisimo:
+
+https://jsoncrack.com/editor
+
+# metodos de json
+
+ya que un objeto tiene una estructura compatible con JSON este puede tener ciertos metodos que no van aplicados obre el objeto pero que se tiene que usar un Objeto llamado `JSON` para poder usar los metodos
+
+## convertir un JSON a string
+
+```javascript
+const persona = {
+  nombre: "Edwar Diaz",
+  edad: 27,
+  saldo: 1000000,
+  cansado: false,
+  idiomas: ["ingles", "español", "frances"],
+  veiculo: {
+    marca: "BMW",
+    color: "plateado",
+    kilometraje: 1567,
+    averiado: false,
+    tecnomecanica: {
+      expedicion: "10/10/2023",
+      expiracion: "10/10/2024",
+    },
+  },
+};
+
+const myJsonString = JSON.stringify(persona);
+console.log(myJsonString); // '{"nombre":"Edwar Diaz","edad":27,"saldo":1000000,"cansado":false,"idiomas":["ingles","español","frances"],"veiculo":{"marca":"BMW","color":"plateado","kilometraje":1567,"averiado":false,"tecnomecanica":{"expedicion":"10/10/2023","expiracion":"10/10/2024"}}}'
+```
+
+## convertir string a JSON
+
+tambien podemos hacer el proceso inversion al punto anterior en caso que en alguna respuesta de algun servidor obtengamos un JSON en forma de string
+
+```javascript
+const personaString =
+  '{"nombre":"Edwar Diaz","edad":27,"saldo":1000000,"cansado":false,"idiomas":["ingles","español","frances"],"veiculo":{"marca":"BMW","color":"plateado","kilometraje":1567,"averiado":false,"tecnomecanica":{"expedicion":"10/10/2023","expiracion":"10/10/2024"}}}';
+
+const persona = JSON.parse(personaString);
+```
+
+# objetos pasados como parámetros y retornados
+
+cuando necesitas recibir varios parametros en una funsion y generalmente si es mas de 4 se recomienda recibir en lugar de diferentes parametros es mejor recibir un objeto como parametro de la funcion.
+
+```javascript
+const persona1 = {
+  nombre: "Edwar Diaz",
+  edad: 27,
+  ingresos: 1000000,
+  egresos: 5000,
+  cansado: false,
+  idiomas: ["ingles", "español", "frances"],
+};
+
+function saldo(persona) {
+  return `El usuario ${persona.nombre} tiene un saldo de : ${
+    persona.ingresos - persona.egresos
+  } y sabe ${persona.idiomas.length} idiomas`;
+}
+
+console.log(saldo(persona1)); // `El usuario Edwar Diaz tiene un saldo de : 995000 y sabe 3 idiomas`
+```
+
+Asi mismo se puede recibir un array de objetos en caso de ser necesario
+
+si se requiere retornar de una funcion mas de un valor se recomienda ternar un objeto
+
+```javascript
+const persona1 = {
+  nombre: "Edwar Diaz",
+  edad: 27,
+  ingresos: 1000000,
+  egresos: 5000,
+  cansado: false,
+  idiomas: ["ingles", "español", "frances"],
+};
+
+function saldoIdiomas(persona) {
+  return {
+    saldo: persona.ingresos - persona.egresos,
+    cantidadIdiomas: persona.idiomas.length,
+  };
+}
+
+console.log(saldo(persona1)); // {saldo: 995000, cantidadIdiomas: 3 }
+```
+
+# Clonacion de objetos y destructuring
+
+similar como los arrays si se hace lo siguiente:
+
+```javascript
+const car = {
+  color: "blue",
+};
+
+const anotherCar = car;
+anotherCar.color = "yellow";
+car.color; //'yellow'
+```
+
+Esto sucede dado que por debajo JS tiene el objeto como una referencia en memoria
+
+para solventar esto se usan `...` de destructuring para pasar todos los atributos de un objeto a otro
+
+```javascript
+const persona1 = {
+  nombre: "Edwar Diaz",
+  edad: 27,
+  ingresos: 1000000,
+  egresos: 5000,
+  cansado: false,
+  idiomas: ["ingles", "español", "frances"],
+};
+
+const persona2 = { ...persona1 };
+```
+
+## destructurin de atributos
+
+en ocaciones si recibimos un objeto en una funcion puede facilitarse para nuestro uso el objetener un atributo del objeto y convertirlo en variable y podemos hacer esto 
+
+```javascript
+const persona1 = {
+  nombre: "Edwar Diaz",
+  edad: 27,
+  ingresos: 1000000,
+  egresos: 5000,
+  cansado: false,
+  idiomas: ["ingles", "español", "frances"],
+};
+
+function saldo(persona) {
+  // declarar la variable
+  const nombre = persona.nombre;
+  return `El usuario ${nombre} tiene un saldo de : ${
+    persona.ingresos - persona.egresos
+  } y sabe ${persona.idiomas.length} idiomas`;
+}
+```
+
+algo mas recomendado que es un codigo mas limpio y que vscode le puede ayudar a detectar que atributos puede extraer es usando destrcuturing
+
+![destruturin json](./img/json/image.png)
+
+```javascript
+const persona1 = {
+  nombre: "Edwar Diaz",
+  edad: 27,
+  ingresos: 1000000,
+  egresos: 5000,
+  cansado: false,
+  idiomas: ["ingles", "español", "frances"],
+};
+
+function saldo(persona) {
+  // destructuring { atributo } = objeto
+  const { nombre } = persona;
+  return `El usuario ${nombre} tiene un saldo de : ${
+    persona.ingresos - persona.egresos
+  } y sabe ${persona.idiomas.length} idiomas`;
+}
+```
