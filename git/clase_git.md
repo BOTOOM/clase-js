@@ -158,9 +158,10 @@ los siguientes videos pueden ser de ayuda
   <source src="https://www.youtube.com/watch?v=lD5-xYYL5eA" type="video/mp4">
 </video>
 
-<video width="400" controls>
-  <source src="https://www.youtube.com/watch?v=QutgAelG2Jg" type="video/mp4">
-</video>
+[![Watch the video](https://img.youtube.com/vi/lD5-xYYL5eA/sddefault.jpg)](https://youtu.be/lD5-xYYL5eA)
+
+[![Watch the video](https://img.youtube.com/vi/QutgAelG2Jg/sddefault.jpg)](https://youtu.be/QutgAelG2Jg)
+
 
 ## ver el historial de commits
 
