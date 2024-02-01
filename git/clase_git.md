@@ -155,9 +155,11 @@ Se que a veces puede ser un poco complicado el entender como funciona esto lo po
 los siguientes videos pueden ser de ayuda
 
 
-[![Watch the video](https://img.youtube.com/vi/lD5-xYYL5eA/sddefault.jpg)](https://youtu.be/lD5-xYYL5eA)
+[![Watch the video](https://img.youtube.com/vi/lD5-xYYL5eA/mqdefault.jpg)](https://youtu.be/lD5-xYYL5eA)
 
 [![Watch the video](https://img.youtube.com/vi/QutgAelG2Jg/mqdefault.jpg)](https://youtu.be/QutgAelG2Jg)
+
+[![Watch the video](https://img.youtube.com/vi/t6GMcIoCD9Q/mqdefault.jpg)](https://youtu.be/t6GMcIoCD9Q)
 
 
 ## ver el historial de commits
