@@ -112,6 +112,8 @@ al añadir un archivo a la lista de lo que deseamos guardar se vera algo asi
 
 El proceso de guardar cambios en git se conoce como **`commit`** y este commit requiere un mensaje para ello en vscode tenemos un campo para el mensaje el cual debe de ser preferiblemente corto y que indique claramente lo que se realizo en este cambio.
 
+Los commit tambien pueden cosiderarse como versiones de su proyecto o su codigo
+
 ![Alt text](image-7.png)
 
 despues se da clic en el boton que dice commit para guardar el cambio con el mensaje
@@ -155,9 +157,11 @@ Se que a veces puede ser un poco complicado el entender como funciona esto lo po
 los siguientes videos pueden ser de ayuda
 
 
-[![Watch the video](https://img.youtube.com/vi/lD5-xYYL5eA/sddefault.jpg)](https://youtu.be/lD5-xYYL5eA)
+[![Watch the video](https://img.youtube.com/vi/lD5-xYYL5eA/mqdefault.jpg)](https://youtu.be/lD5-xYYL5eA)
 
 [![Watch the video](https://img.youtube.com/vi/QutgAelG2Jg/mqdefault.jpg)](https://youtu.be/QutgAelG2Jg)
+
+[![Watch the video](https://img.youtube.com/vi/t6GMcIoCD9Q/mqdefault.jpg)](https://youtu.be/t6GMcIoCD9Q)
 
 
 ## ver el historial de commits
@@ -180,3 +184,60 @@ al instalar la extensio podemos ver en nuestra pestaña de git un nuevo boton:
 si le damos clic al boton veremos todos los cambios de forma grafica en la cual encontraremos un grafico al inicio como una linea de tiempo, los commit estaran ordenados desde el mas reciente hacia el mas antiguo. luego tenemos la descripcion y alli hay algo que dice master, eso es algo que veremos en la seccion de **ramas** , luego esta la fecha del commit, luego el autor y por ultimo donde dice **"commit"** alli hay un texto alfanumerico , este es un dado conocido como SHA el cual es un identificados unico que hace referencia a cada commit. esto nos servira en secciones posteriores.
 
 ![Alt text](image-14.png)
+
+## Viaje entre versiones o commit - checkout
+
+Con los diferentes cambios guardados como commit nosotros podemos devolvernos entre versiones. si lo ver como una linea de tiempo imagina poder viajar entre el presente y cualquier punto en el pasado segun desees y volver al presente sin lio.
+
+![Alt text](image-15.png)
+
+imaginemos que tenemos la siguiente linea de tiempo el primer item de la lista es donde estamos ubicados actualmente y se podria considerar el presente pero existe la posibilidad que requiera ver los archivos en una version anterior antes de que usted o alguno de sus compañeros realizaran algun cambio.
+
+![Alt text](image-14.png)
+
+imaginese que un compañero incluyo un error en uno de los cambios y usted quiere verificar si los cambios anteriores a los de el funcionan. pues puede hacerlo y para ello existe `checkout`
+
+**`checkout`** le sirve para viajar entre commit y entre ramas(ramas lo veremos despues) y como viaja entre commit usando el identificador unico de cada commit el cual es el SHA
+
+si le damos clic a un commit de la lista vamos a obtener lo siguiente en lo cual encontramos la siguiente informacion:
+
+- commit:  este es el identificador SHA del commit
+- parents: es el commit o los commit que son padres de el en este caso solo es uno pero cuando viamos ramas podremos ver mas.  este parent es el SHA del commit anterior en en la lista aparece como **creacion html inicial**
+- Autor y commiter: es quien realizo el commit - si alguna vez quiere saber quien introdujo un error en este lugar esta esa información
+- date: es la fecha exacta cuando se realizo el commit
+
+![Alt text](image-16.png)
+
+ya con esta informacion podemos obtener este identificador para poder viajar a esa version de ese commit usando `checkout`, el sha nos sirve si queremos hacer esta opcion por comando en la terminal
+
+
+```bash
+# git chechout [SHA]
+git checkout 4ffcb1991b5202f5c4f440db8380391ae35f0f1f
+```
+
+ahora por interfaz nos vamos a la vista de nuestros commit y selecionamos el commit al que queremos viajar y le damos clic derecho luego elgimos la opcion y nos preguntara si queremos hacer el checkout hacia ese commit y le daremos a SI
+
+![Alt text](Screenshot_20240202_152836.png)
+
+al hacer esto veremos un pequeño cambio en nuestra grafica y es que el circulo con punto negro ha cambiado de estar en el primer commit de la lista a estar en el seleccionado , esto nos indica que se ha realizado la accion correctamente
+
+![Alt text](image-17.png)
+
+esto lo podemos verificar con vscode en la parte inferior derecha donde estara la version acortada del SHA del commit 
+
+![Alt text](Screenshot_20240202_153202.png)
+
+ahora si vemos el archivo html veremos que esta en la version antes de crear los DIV
+
+![Alt text](image-18.png)
+
+y para volver a nuestro commit principal (el presente) haremos lo mismo
+
+## Deshacer cambios
+
+## Ramas
+
+## Integracion con github
+
+## Trabajo en equipo
