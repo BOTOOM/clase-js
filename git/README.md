@@ -169,8 +169,7 @@ los siguientes videos pueden ser de ayuda
 En git podemos ver el historial de todos los cambios realizados y para ello con vscode tenemos algunas extensiones antes de ver estas extensiones quiero mostrar la forma de hacerlo con comandos
 
 ```bash
-# git commit -m [mensaje]
-git commit -m "mi primer commit"
+git log
 ```
 
 ahora una de las extensiones es:
@@ -222,6 +221,8 @@ ahora por interfaz nos vamos a la vista de nuestros commit y selecionamos el com
 
 al hacer esto veremos un pequeño cambio en nuestra grafica y es que el circulo con punto negro ha cambiado de estar en el primer commit de la lista a estar en el seleccionado , esto nos indica que se ha realizado la accion correctamente
 
+a este circulo que nos indica donde estamos se le conoce como HEAD esto nos sirve de referencia para varios temas de git donde vamos a encontrar diferentes comandos que lo utilizan
+
 ![Alt text](image-17.png)
 
 esto lo podemos verificar con vscode en la parte inferior derecha donde estara la version acortada del SHA del commit 
@@ -236,8 +237,52 @@ y para volver a nuestro commit principal (el presente) haremos lo mismo
 
 ## Deshacer cambios
 
+Puede que en algun caso tengas un commit y quieras deshacer cambios que posiblemente quieras deshacer y aqui hay algunas opciones que podemos usar. Que opcion usar depende de lo que requieras realizar.
+
+las opciones a usar son:
+
+- reset
+ - soft
+ - mixed
+ - hard
+- revert (recomendado para cambios que ya estan enla nube)
+
+### Reset
+
+El comando de reset es mas recomendable usarlo para cuando estas trabajando en tu repositiorio local y los cambios aun no estan en la nube. es decir que si ya subiste tus cambios a la nube y ya tus commit estan en el repositiorio remoto ya no es recomendable usar este comando.
+
+1. **`git reset --soft`**:
+
+    - Mueve el puntero HEAD a un commit anterior.
+    - No modifica el área de pruebas (staging) ni el directorio de trabajo.
+    - Es la opción más segura, ya que puedes recuperar fácilmente los cambios deshechos.
+
+    es decir que solo va a dehacer la ejecucion del comando `git commit` y te dejara lo demas como estaba incluso de dejara la lista de `staged changes`  con los archivos que tenias alli.
+
+
+    Ejemplo:
+
+    ```bash
+    git reset --soft HEAD~1
+    ```
+#### soft
+
+
+
 ## Ramas
+
+crear ramas
+
+cambiar entre ramas
+
+eliminar ramas
+
+### mezclar ramas
 
 ## Integracion con github
 
 ## Trabajo en equipo
+
+gitflow
+
+conflictos entre cambios
