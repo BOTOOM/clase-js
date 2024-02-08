@@ -221,7 +221,7 @@ ahora por interfaz nos vamos a la vista de nuestros commit y selecionamos el com
 
 al hacer esto veremos un pequeño cambio en nuestra grafica y es que el circulo con punto negro ha cambiado de estar en el primer commit de la lista a estar en el seleccionado , esto nos indica que se ha realizado la accion correctamente
 
-a este circulo que nos indica donde estamos se le conoce como HEAD esto nos sirve de referencia para varios temas de git donde vamos a encontrar diferentes comandos que lo utilizan
+a este circulo que nos indica donde estamos se le conoce como **`HEAD`** esto nos sirve de referencia para varios temas de git donde vamos a encontrar diferentes comandos que lo utilizan
 
 ![Alt text](image-17.png)
 
@@ -247,6 +247,16 @@ las opciones a usar son:
  - hard
 - revert (recomendado para cambios que ya estan enla nube)
 
+## Ramas
+
+Las ramas son aquella opcion que nos da git para hacer cambios sin afectar el codigo principal. haga alucion como si fuera un multiverso en el cual puede tener distintas lineas de tiempo y cada linea de tiempo puede nacer de diferentes puntos en el tiempo.
+
+crear ramas
+
+cambiar entre ramas
+
+eliminar ramas
+
 ### Reset
 
 El comando de reset es mas recomendable usarlo para cuando estas trabajando en tu repositiorio local y los cambios aun no estan en la nube. es decir que si ya subiste tus cambios a la nube y ya tus commit estan en el repositiorio remoto ya no es recomendable usar este comando.
@@ -267,15 +277,6 @@ El comando de reset es mas recomendable usarlo para cuando estas trabajando en t
     ```
 #### soft
 
-
-
-## Ramas
-
-crear ramas
-
-cambiar entre ramas
-
-eliminar ramas
 
 ### mezclar ramas
 
