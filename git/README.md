@@ -235,6 +235,131 @@ ahora si vemos el archivo html veremos que esta en la version antes de crear los
 
 y para volver a nuestro commit principal (el presente) haremos lo mismo
 
+## Ramas - git branch
+
+Las ramas son aquella opcion que nos da git para hacer cambios sin afectar el codigo principal. haga alucion como si fuera un multiverso en el cual puede tener distintas lineas de tiempo y cada linea de tiempo puede nacer de diferentes puntos en el tiempo.
+
+![Alt text](image-19.png)
+
+
+ahora algo similar a lo que se ven los graficos de las ramas de git es lo siguiente:
+
+![Alt text](image-20.png)
+
+
+### crear ramas
+
+por defecto cuando ya tienes inicializado un repositiorio hay una rama creada por defecto dependiendo de tu version de git puede llamarse  `main` o `master` la cual es la rama principal de ru repositorio y el fin de esta rama es que alli este el codigo estable que se va a desplegar y a usar en tu proyecto.
+
+usando la herramienta grafica podemos hacer lo siguiente. y al terminar el proceso inmediatamente se te ha creado la rama y has cambiado a esa rama.
+
+<video src="scrnli_2_12_2024_3-40-27%20PM.mp4" controls title="Title"></video>
+
+si quisieramos hacer este proceso desde la terminar tenermos 2 formas
+
+1. **Crear la rama y luego cambiarnos la rama**
+    ```bash
+    # crear la rama
+    # git branch [nombre_rama]
+    git branch boton
+    # cambiar a la rama
+    # git checkout [nombre_rama]
+    git checkout nombre rama
+
+    # otra alternativa es usar switch
+    git switch [nombre_rama]
+    ```
+2. **Crear la rama y cambiarnos automaticamente a ella**
+    ```bash
+    # crear la rama y cambiar se a ella automaticamente
+    git checkout -b [nombre_rama]
+    ```
+
+en esta rama hare un nuevo commit añadiendo un boton en mi html y el grafico me quedaria asi
+
+![Alt text](image-21.png)
+
+en este caso vemos que mi rama `boton` tiene un commit adicional que `master` no tiene. 
+
+### cambiar entre ramas
+
+Cambiar entre ramas es util por si tenemos varias fincionalidades entre las que estamos trabajando, por si queremos revisar el codigo de un compañero o si queremos tener el codigo de cada ambiente en un rama separada. para ello desde la terminar usaremos algo que ya vimos previamente
+
+```bash
+
+# cambiar a la rama
+# git checkout [nombre_rama]
+git checkout master
+
+# otra alternativa es usar switch
+git switch master
+```
+
+desde la herramienta grafica lo que haremos es darle doble clic al recuadro con el nombre de la rama y esto hara que cambiamos entre ramas de forma mas comoda como se ve a continuacion
+
+<video src="scrnli_2_12_2024_4-19-32%20PM.mp4" controls title="Title"></video>
+
+de esta forma podemos cambiar entre ramas. adicionalmente para el siguiente ejemplo primero me cambiare a la rama  `master` y creare una rama llamada  `nav` y creare un commit donde añadire un nav en el html despues de este proceso mi grafico se ve asi
+
+![Alt text](image-22.png)
+
+### eliminar ramas
+
+cuando estamos trabajando en equipo o llevamos un buen tiempo trabajando en un proyecto es posible que tengamos muchas ramas y nuestro grafico se vea un poco desordenado o que incluso cambiar entre ramas se convierta en un proceso un poco arduo para ello se recomienda siempre si una rama esta vieja o ya la fusionaste eliminala para evitar ruido en tu proyecto.
+
+> ***NOTA: muy importante no podemos eliminar una rama si estamos ubicados en ella, primero tenemos que cambiarnos a otra rama***
+
+Para eliminar ramas con la terminal podemos hacer lo siguiente 
+
+```bash
+
+# eliminar rama
+# git branch -D [nombre_rama]
+git branch -D nav
+
+# eliminar varias ramas al tiempo 
+# git branch -D [nombre_ramas separadas por espacio]
+git branch -D nav footer etc
+```
+
+desde la herramienta grafica haremos lo siguiente:
+
+<video src="scrnli_2_12_2024_4-29-12%20PM.mp4" controls title="Title"></video>
+
+## Fusionar ramas - merge
+
+cuano ya llevamos tenemos una nueva funcionalidad completa o la correccion de un bug ya podemos unir nuestro codigo en nuestra rama con el codigo de la rama principal
+
+primero para el ejemplo hare un cambio mas cambiandole el tecto al boton y hare un commit
+
+ahora para fusionar ramas lo primero que tenemos que hacer es cambiarnos a la rama que va a recibir los cambios en este caso yo desarrolle mi nuevo funcionalidad en la rama  `boton` y quiero que estos cambios sean recibidos en la rama `master` que es mi rama principal. para ello primero debo hacer un `checkout` a master y estar ubicado en master.
+
+luego si puedo hacer el merge:
+
+primero haremos el proceso por la terminal 
+
+```bash
+# cambiar a la rama destino, la que recibira el codigo
+# git checkout [nombre_rama]
+git checkout master
+
+# ejecutar merge, exiten algunas formas de hacer merge pero la mas
+# recomendada es una que crea un commit que indica la fusion y esto es
+# no fast forward
+# git merge --no-ff [nombre de la rama que tiene el codigo nuevo o a recibir]
+git merge --no-ff boton
+```
+
+en la terminal se vera lo siguiente
+
+![Alt text](image-23.png)
+
+ahora por la interfaz haremos lo siguiente
+
+<video src="scrnli_2_12_2024_4-43-19%20PM.mp4" controls title="Title"></video>
+
+
+
 ## Deshacer cambios
 
 Puede que en algun caso tengas un commit y quieras deshacer cambios que posiblemente quieras deshacer y aqui hay algunas opciones que podemos usar. Que opcion usar depende de lo que requieras realizar.
@@ -247,15 +372,7 @@ las opciones a usar son:
  - hard
 - revert (recomendado para cambios que ya estan enla nube)
 
-## Ramas
 
-Las ramas son aquella opcion que nos da git para hacer cambios sin afectar el codigo principal. haga alucion como si fuera un multiverso en el cual puede tener distintas lineas de tiempo y cada linea de tiempo puede nacer de diferentes puntos en el tiempo.
-
-crear ramas
-
-cambiar entre ramas
-
-eliminar ramas
 
 ### Reset
 
@@ -276,9 +393,6 @@ El comando de reset es mas recomendable usarlo para cuando estas trabajando en t
     git reset --soft HEAD~1
     ```
 #### soft
-
-
-### mezclar ramas
 
 ## Integracion con github
 
