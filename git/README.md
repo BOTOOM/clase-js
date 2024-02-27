@@ -378,6 +378,16 @@ las opciones a usar son:
 
 El comando de reset es mas recomendable usarlo para cuando estas trabajando en tu repositiorio local y los cambios aun no estan en la nube. es decir que si ya subiste tus cambios a la nube y ya tus commit estan en el repositiorio remoto ya no es recomendable usar este comando.
 
+reset tiene 3 opciones **soft,mixed y hard** cada una de estas hace un tipo de rest distinto, es decir cada uno aplica que areas de git se resetean y cuales se mantienen intactas:
+
+![alt text](image-24.png)
+
+para el ejemplo de esa seccion primero realizare varios cambios para crear una serie de commit, y mi grafico de git se vera asi, siendo los que estan en rojo mis ultimos commit
+
+![alt text](image-25.png)
+
+a continuación encontraras cada opcion con un poco de explicacion dada por bard
+
 1. **`git reset --soft`**:
 
     - Mueve el puntero HEAD a un commit anterior.
@@ -392,7 +402,66 @@ El comando de reset es mas recomendable usarlo para cuando estas trabajando en t
     ```bash
     git reset --soft HEAD~1
     ```
-#### soft
+    tambien podemos hacerlo para retroceder varios commits ya que el comando anterior solo se aplicapara el ultimo commit pero para ello mejor lo haremos en la interfaz 
+
+    el el siguiente video vemos como nos retrocedemos a un commit deseado es decir que lo que esta en ese commit, todos los mensajes de commit se mantienen pero los arriba de el son eliminados
+
+    <video controls src="scrnli_2_27_2024_5-08-29 PM.mp4" title="Title"></video>
+
+2. git reset --mixed:
+
+    - Mueve el puntero HEAD a un commit anterior.
+    - Elimina los cambios del área de pruebas.
+    - Conserva los cambios en el directorio de trabajo.
+    
+    Ejemplo:
+
+    ```bash
+    git reset --mixed HEAD~2
+    ```
+    
+    Este comando moverá el puntero HEAD dos commits atrás. Los cambios de los dos últimos commits se eliminarán del área de pruebas, pero se conservarán en el directorio de trabajo.
+
+    ahora haremos el reset con la interfaz similar al caso anterior pero usaremos la opcion **mixed**
+
+    <video controls src="scrnli_2_27_2024_5-15-31 PM.mp4" title="Title"></video>
+
+3. git reset --hard:
+
+    - Mueve el puntero HEAD a un commit anterior.
+    - Elimina los cambios del área de pruebas y del directorio de trabajo.
+    
+    Ejemplo:
+
+    ```bash
+    git reset --hard HEAD~3
+    ```
+
+    Este comando moverá el puntero HEAD tres commits atrás. Los cambios de los tres últimos commits se eliminarán del área de pruebas y del directorio de trabajo.
+
+    ahora haremos el ejemplo con la interfaz de hacer reset del ultimo commit pero con la opcion **hard** 
+
+    <video controls src="scrnli_2_27_2024_5-17-36 PM.mp4" title="Title"></video>
+    
+### Git Revert
+
+esta opcion es recomendada cuando ya tienes cambios en la nube, y eso se recomienda dado que el usar **reset** modifica el historial quitando commit ya existentes y esto puede causar problemas . es decir que su tu ya habias subido tus cambios luego hacer un reset y vuelves a intenter subir github te dira que no se puede por que el historial de cambios no coincide. Si tienes permisos de administrador sobre el repositorio de github puedes usar la opcion de ***force*** y se sobreescribira. Pero si estamos en una organizacion esto no lo tendremos y no podremos hacer eso. para ello se recomienda usar ***revert***
+
+revert lo que hara es crearte un commit diciendo que se hizo revert de otro commit, de esta forma se deja un historial en el cual se indica que se realizo el revert y hibieron cambios que se revirtieron pero no habra conflictos con github.
+
+![alt text](image-26.png)
+
+desde la terminal puedes usar 
+
+```bash
+git revert [commit_id]
+```
+
+para este caso d ela interfaz vamos a estar situados justo despues del ultimo reset de la seccion anterior:
+
+desde la interfaz hariamos lo siguiente y en este ejemplo queremos revertir un boton duplicado que se añadio en un commit anterior:
+
+<video controls src="scrnli_2_27_2024_5-29-01 PM.mp4" title="Title"></video>
 
 ## Integracion con github
 
